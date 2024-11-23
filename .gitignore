@@ -1,0 +1,38 @@
+# Fichiers Python compilés
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+# Virtualenv
+env/
+venv/
+ENV/
+VENV/
+# Configuration locale et clés sensibles
+*.env
+*.local
+# Fichiers générés par Django
+db.sqlite3
+*.log
+*.pot
+staticfiles/
+media/
+# Outils et IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+# Dépendances Python
+pip-log.txt
+pip-delete-this-directory.txt
+# Docker
+*.dockerignore
+docker-compose.override.yml
+
+# Caches
+*.cache
+*.coverage
+.coverage.*
+.cache/
