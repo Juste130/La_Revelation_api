@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UtilisateurViewSet, ReservationViewSet, ReservationChambreViewSet, ReservationEvenementViewSet, ChambreViewSet, PlaceDeFeteViewSet
+from .views import LogoutView, UtilisateurViewSet, ReservationViewSet, ReservationChambreViewSet, ReservationEvenementViewSet, ChambreViewSet, PlaceDeFeteViewSet
 from rest_framework.routers import DefaultRouter
 
 
@@ -11,7 +11,16 @@ router.register('reservationRoom', ReservationChambreViewSet, basename='reservat
 router.register('room', ChambreViewSet, basename='room')
 router.register('placedefetes', PlaceDeFeteViewSet, basename='placedefetes')
 
-urlpatterns = router.urls
+
+# Ajouter la vue LogoutView comme route séparée
+urlpatterns = [
+    path('logout/', LogoutView.as_view(), name='logout'),
+]
+
+# Combiner les URLs des ViewSets avec celles de LogoutView
+urlpatterns += router.urls
+
+
 
 
 # urlpatterns = [

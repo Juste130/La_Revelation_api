@@ -58,7 +58,7 @@ class Reservation(models.Model):
         ('en_cours', 'En cours...'),
         ('confirmee', 'Confirmée'),
         ('annulee', 'Annulée')
-    ), verbose_name="Status de la réservation")
+    ), verbose_name="Status de la réservation", default='en_cours')
 
 
     def __str__(self):
@@ -69,8 +69,8 @@ class Reservation_Evenement(Reservation):
     date = models.DateField(verbose_name="Date de l'évènement", editable=True)
     heure_debut = models.TimeField(verbose_name="Heure de début", editable=True)
     duree = models.IntegerField(verbose_name='Durée', editable=True)
-    cout = models.DecimalField(max_digits=10, decimal_places=2)
-    nombre_invites = models.IntegerField(verbose_name="Nombres d'invités approximatif", choices=(
+    cout = models.IntegerField()
+    nombre_invites = models.CharField(max_length=25, verbose_name="Nombres d'invités approximatif", choices=(
         ('petit', '01 à 10'),
         ('cinquantaine', '11 à 50'),
         ('centaine', '51 à 100'),
@@ -88,7 +88,7 @@ class Reservation_Chambre(Reservation):
     room = models.ForeignKey('Chambres', verbose_name="Chambre", on_delete=models.CASCADE)
     date_heure_arrive = models.DateTimeField(verbose_name="Date et Heure d'arrivé", editable=True,)
     date_heure_depart = models.DateTimeField(verbose_name="Date et Heure de départ", editable=True)
-    cout = models.DecimalField(max_digits=10, decimal_places=2)
+    cout = models.IntegerField()
     plus_details = models.TextField(verbose_name="Plud de détails")
 
     def __str__(self):
@@ -103,7 +103,7 @@ class Place_de_fete(models.Model):
         ('calme', 'Espace calme')
     ))
     capacite = models.IntegerField(verbose_name="Capacité de la place")
-    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    prix = models.IntegerField()
     status_place = models.CharField(max_length=15, choices=(
         ('indisponible', "Indisponible"),
         ('disponible', 'Disponible')
@@ -120,8 +120,8 @@ class Chambres(models.Model):
         ('climatise', "Chambre climatisée"),
         ('suite', 'Suite')
     ))
-    prix_heure = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Prix par heure")
-    prix_nuitee = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Prix par nuitée")
+    prix_heure = models.IntegerField(verbose_name="Prix par heure")
+    prix_nuitee = models.IntegerField(verbose_name="Prix par nuitée")
     status_chambre = models.CharField(max_length=15, choices=(
         ('indisponible', "Indisponible"),
         ('disponible', 'Disponible')

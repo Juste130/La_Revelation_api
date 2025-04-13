@@ -12,17 +12,15 @@ class AdminReservation(admin.ModelAdmin):
     list_display = ('id', 'utilisateur', 'date_heure_reservation', 'status_reservation')
     list_filter = ('date_heure_reservation', 'status_reservation')
     search_fields = ['date_heure_reservation', 'status_reservation']
-    readonly_fields = ('date_heure_reservation',)
+    readonly_fields = ('date_heure_reservation', 'utilisateur', 'status_reservation')
 
 class AdminReservation_Evenement(admin.ModelAdmin):
     list_display = ('id', 'place', 'date', 'heure_debut', 'duree', 'cout', 'nombre_invites')
     list_filter = ('date', 'heure_debut')
-    readonly_fields = ('date', 'heure_debut', 'duree')
 
 class AdminReservation_Chambre(admin.ModelAdmin):
     list_display = ('id', 'room', 'date_heure_arrive', 'date_heure_depart', 'cout')
     list_filter = ('date_heure_arrive', 'date_heure_depart')
-    readonly_fields = ('date_heure_arrive', 'date_heure_depart')
 
 
 class AdminPlace_de_fete(admin.ModelAdmin):
